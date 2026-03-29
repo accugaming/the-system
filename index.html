@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>THE SYSTEM - PLAYER INTERFACE</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00f7ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
+</head>
+<body class="system-theme">
+    <div class="scanline"></div>
+    <div class="vignette"></div>
+
+    <audio id="sfx-ping" src="https://assets.mixkit.co/active_storage/sfx/2861/2861-preview.mp3"></audio>
+    <audio id="sfx-quest" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+
+    <div id="sunday-screen" class="full-overlay" style="display: none;">
+        <div class="system-window danger-border">
+            <div class="window-header red-text">! WARNING</div>
+            <div class="window-body">
+                <p>RECOVERY PROTOCOL ACTIVE.</p>
+                <p class="red-text">TRAINING IS STRICTLY FORBIDDEN ON SUNDAYS.</p>
+                <p>REST TO PREVENT MUSCLE DEGRADATION.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="rest-screen" class="full-overlay" style="display: none;">
+        <div class="system-window rest-glow">
+            <h1 id="rest-timer" class="timer-large">60</h1>
+            <p class="cyan-text">RECOVERING MUSCLE FIBERS...</p>
+        </div>
+    </div>
+
+    <div id="levelup-overlay" class="full-overlay" style="display: none; background: rgba(0,0,0,0.95);">
+        <div class="glitch-container">
+            <h1 class="glitch-text">LEVEL UP</h1>
+            <p class="rank-evolve">NEW RANK ATTAINED: <span id="new-rank">D</span></p>
+        </div>
+    </div>
+
+    <div id="init-screen" class="full-overlay">
+        <div class="system-window quest-border">
+            <div class="window-header"><span class="blink-dot"></span> NOTIFICATION</div>
+            <div class="window-body">
+                <p class="quest-desc">A daily quest has arrived for the <span class="player-red-text">PLAYER</span>.</p>
+                <h2 id="rank-display" class="rank-cyan">E-RANK</h2>
+                <div class="quest-details">
+                    <p>TASK: <span id="day-task-label" class="cyan-text">---</span></p>
+                </div>
+                <button id="accept-btn" class="btn-system" onclick="startQuest()">ACCEPT</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-ui" style="display: none;">
+        <div class="vision-layer"><video id="webcam" autoplay playsinline></video></div>
+        
+        <div class="hud-frame">
+            <div class="task-bar">
+                <span class="label">CURRENT TASK:</span>
+                <span id="active-task-hud" class="cyan-text">---</span>
+            </div>
+            <div class="set-bar">
+                SET <span id="cur-set" class="cyan-text">1</span> / <span id="total-sets">2</span>
+            </div>
+        </div>
+
+        <div class="rep-circle">
+            <div class="rep-count-box">
+                <span id="c-reps">0</span><small>/<span id="g-reps">10</span></small>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
